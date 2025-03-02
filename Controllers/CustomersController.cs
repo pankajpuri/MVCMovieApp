@@ -22,7 +22,7 @@ namespace MVCMovieApp.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.cutomers.ToListAsync());
+            return View(await _context.Customer.ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -33,7 +33,7 @@ namespace MVCMovieApp.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.cutomers
+            var customer = await _context.Customer
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
             {
@@ -73,7 +73,7 @@ namespace MVCMovieApp.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.cutomers.FindAsync(id);
+            var customer = await _context.Customer.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace MVCMovieApp.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.cutomers
+            var customer = await _context.Customer
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
             {
@@ -139,10 +139,10 @@ namespace MVCMovieApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.cutomers.FindAsync(id);
+            var customer = await _context.Customer.FindAsync(id);
             if (customer != null)
             {
-                _context.cutomers.Remove(customer);
+                _context.Customer.Remove(customer);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace MVCMovieApp.Controllers
 
         private bool CustomerExists(int id)
         {
-            return _context.cutomers.Any(e => e.Id == id);
+            return _context.Customer.Any(e => e.Id == id);
         }
     }
 }

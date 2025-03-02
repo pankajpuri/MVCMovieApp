@@ -7,7 +7,7 @@ namespace MVCMovieApp.Data
     {
         public MVCMovieAppDBContext(DbContextOptions<MVCMovieAppDBContext> options) : base(options) { }
 
-        public DbSet<Customer> cutomers { get; set; }
+        public DbSet<Customer> Customer { get; set; }
         public DbSet<Product> Product { get; set; } = default!;
         public DbSet<Store> Store { get; set; } = default!;
         public DbSet<ProductSold> ProductSold { get; set; } = default!;

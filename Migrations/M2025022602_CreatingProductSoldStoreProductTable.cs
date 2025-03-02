@@ -50,10 +50,10 @@ namespace MVCMovieApp.Migrations
                             )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 80, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
                             ) ON [PRIMARY]
 
-                            ALTER TABLE [dbo].[ProductSold]  WITH CHECK ADD  CONSTRAINT [FK_ProductSold_cutomers] FOREIGN KEY([CustomerId])
-                            REFERENCES [dbo].[cutomers] ([Id])
+                            ALTER TABLE [dbo].[ProductSold]  WITH CHECK ADD  CONSTRAINT [FK_ProductSold_Customer] FOREIGN KEY([CustomerId])
+                            REFERENCES [dbo].[Customer] ([Id])
 
-                            ALTER TABLE [dbo].[ProductSold] CHECK CONSTRAINT [FK_ProductSold_cutomers]
+                            ALTER TABLE [dbo].[ProductSold] CHECK CONSTRAINT [FK_ProductSold_Customer]
 
                             ALTER TABLE [dbo].[ProductSold]  WITH CHECK ADD  CONSTRAINT [FK_ProductSold_Product] FOREIGN KEY([ProductId])
                             REFERENCES [dbo].[Product] ([Id])

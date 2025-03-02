@@ -50,7 +50,7 @@ namespace MVCMovieApp.Controllers
         // GET: ProductSolds/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.cutomers, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id");
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id");
             ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id");
             return View();
@@ -69,7 +69,7 @@ namespace MVCMovieApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.cutomers, "Id", "Id", productSold.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id", productSold.CustomerId);
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", productSold.ProductId);
             ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", productSold.StoreId);
             return View(productSold);
@@ -91,7 +91,7 @@ namespace MVCMovieApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.cutomers, "Id", "Id", productSold.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id", productSold.CustomerId);
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", productSold.ProductId);
             ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", productSold.StoreId);
             return View(productSold);
@@ -129,7 +129,7 @@ namespace MVCMovieApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.cutomers, "Id", "Id", productSold.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id", productSold.CustomerId);
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", productSold.ProductId);
             ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", productSold.StoreId);
             return View(productSold);
