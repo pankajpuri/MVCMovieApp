@@ -22,6 +22,7 @@ namespace MVCMovieApp.Controllers
         // GET: ProductSolds
         public async Task<IActionResult> Index()
         {
+             
             var mVCMovieAppDBContext = _context.ProductSold.Include(p => p.Customers).Include(p => p.Products).Include(p => p.Stores);
             return View(await mVCMovieAppDBContext.ToListAsync());
         }
@@ -50,9 +51,9 @@ namespace MVCMovieApp.Controllers
         // GET: ProductSolds/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id");
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id");
-            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Name");
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name");
+            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Name");
             return View();
         }
 
@@ -63,15 +64,23 @@ namespace MVCMovieApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ProductId,CustomerId,StoreId,DateSold")] ProductSold productSold)
         {
+            Console.WriteLine(productSold);
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);  // or log the error message
+                }
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(productSold);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id", productSold.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", productSold.ProductId);
-            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", productSold.StoreId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Name", productSold.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name", productSold.ProductId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Name", productSold.StoreId);
             return View(productSold);
         }
 

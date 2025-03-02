@@ -35,13 +35,13 @@
                 @Html.DisplayFor(modelItem => item.DateSold)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customers.Id)
+                @Html.DisplayFor(modelItem => item.Customers.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Products.Id)
+                    @Html.DisplayFor(modelItem => item.Products.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stores.Id)
+                    @Html.DisplayFor(modelItem => item.Stores.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
